@@ -62,4 +62,20 @@ public class PassengerPlane extends Airplane {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PassengerPlane that = (PassengerPlane) o;
+
+        return seats == that.seats;
+    }
+
+    @Override
+    public int hashCode() {
+        return seats;
+    }
 }
