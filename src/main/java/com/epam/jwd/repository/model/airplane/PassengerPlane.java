@@ -1,6 +1,8 @@
 package com.epam.jwd.repository.model.airplane;
 
-public class PassengerPlane extends Airplane {
+import java.util.Objects;
+
+public class PassengerPlane extends Airplane{
 
     private int seats;
 
@@ -19,6 +21,7 @@ public class PassengerPlane extends Airplane {
         private int seats;
         private int fuelConsumption;
         private int range;
+        private int id;
         private String manufacturer;
         private String model;
 
@@ -48,6 +51,11 @@ public class PassengerPlane extends Airplane {
             return this;
         }
 
+        public Builder withId(int id){
+            this.id = id;
+            return this;
+        }
+
         public PassengerPlane build(){
 
             PassengerPlane passengerPlane = new PassengerPlane();
@@ -56,6 +64,7 @@ public class PassengerPlane extends Airplane {
             passengerPlane.setRange(range);
             passengerPlane.setManufacturer(manufacturer);
             passengerPlane.setModel(model);
+            passengerPlane.setId(id);
 
             return passengerPlane;
         }
@@ -64,18 +73,39 @@ public class PassengerPlane extends Airplane {
 
     @Override
     public boolean equals(Object o) {
+        boolean flag;
+
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) return false;
 
-        PassengerPlane that = (PassengerPlane) o;
+        if (o instanceof PassengerPlane plane) {
+            flag = plane.getFuelConsumption() == fuelConsumption
+                    && plane.getManufacturer().equals(manufacturer)
+                    && plane.getModel().equals(model)
+                    && plane.getRange() == range
+                    && plane.getSeats() == seats;
+        } else {
+            flag = false;
+        }
 
-        return seats == that.seats;
+        return flag;
     }
 
     @Override
     public int hashCode() {
-        return seats;
+        return Objects.hashCode(seats) + Objects.hashCode(fuelConsumption) + Objects.hashCode(range) + Objects.hashCode(manufacturer) + Objects.hashCode(model);
+    }
+
+
+    @Override
+    public String toString() {
+        return "PassengerPlane{" +
+                "fuelConsumption=" + fuelConsumption +
+                ", range=" + range +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", model='" + model + '\'' +
+                ", seats=" + seats +
+                '}';
     }
 }
