@@ -5,12 +5,13 @@ import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import com.epam.jwd.repository.storage.Repository;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Company{
+public class Company implements Serializable {
 
     private String name;
     private final List<Airplane> airplanes = new ArrayList<>();

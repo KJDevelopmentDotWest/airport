@@ -1,6 +1,8 @@
 package com.epam.jwd.repository.model.airplane;
 
-public abstract class Airplane{
+import java.io.Serializable;
+
+public abstract class Airplane implements Serializable {
     protected int fuelConsumption;
     protected int range;
     protected String manufacturer;
