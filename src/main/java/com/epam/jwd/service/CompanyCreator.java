@@ -7,24 +7,31 @@ import com.epam.jwd.repository.model.company.Company;
 import com.epam.jwd.repository.storage.Repository;
 import com.epam.jwd.service.exeption.MinMaxFuelConsumptionExeption;
 import com.epam.jwd.service.exeption.WrongIdException;
-import com.epam.jwd.service.validator.ServiceValidator;
+import com.epam.jwd.service.validator.CompanyCreatorValidator;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AppService {
+public class CompanyCreator {
     private final String ID_ERROR_MESSAGE = "Id should be greater than 0";
     private final String MIN_MAX_FUELCONSUMPTION_ERROR_MESSAGE = "Min Max is not valid";
-    private Company company;
+    private Company company = new Company();
 
-    public void makeCompany(String nameCompany) {
-        company = new Company(nameCompany);
+    public CompanyCreator(String nameCompany) {
+        company.setName(nameCompany);
+    }
+
+    public Company getCompany() {
+        return company;
     }
 
     public void addAirplaneToCompany(int id) throws WrongIdException {
-        if (ServiceValidator.validateId(id)) {
-            company.getAirplanes().add(Repository.getDefaultAirplanes().get(id));
+        if (CompanyCreatorValidator.validateId(id)) {
+            company.getAirplanes().add(Repository.getDefaultAirplanes().stream()
+                    .filter(airplane -> airplane.getId() == id)
+                    .findFirst()
+                    .get());
         } else {
             //logger
             throw new WrongIdException(ID_ERROR_MESSAGE);
@@ -32,7 +39,10 @@ public class AppService {
     }
 
     public void deleteAirplaneFromCompany(int id) {
-        company.getAirplanes().remove(company.getAirplanes().get(id));
+        company.getAirplanes().remove(company.getAirplanes().stream()
+                .filter(airplane -> airplane.getId() == id)
+                .findFirst()
+                .get());
     }
 
     public void saveToRepository() {
@@ -54,7 +64,7 @@ public class AppService {
     }
 
     public List<Airplane> findAirplaneByFuelConsumption(int minFuelConsumption, int maxFuelConsumption) throws MinMaxFuelConsumptionExeption {
-        if (ServiceValidator.validateMinMaxFuelConsumption(minFuelConsumption, maxFuelConsumption)) {
+        if (CompanyCreatorValidator.validateMinMaxFuelConsumption(minFuelConsumption, maxFuelConsumption)) {
             return company.getAirplanes().stream()
                     .filter(airplane -> airplane.getFuelConsumption() >= minFuelConsumption
                             && airplane.getFuelConsumption() <= maxFuelConsumption)
@@ -69,5 +79,9 @@ public class AppService {
         return company.getAirplanes().stream()
                 .sorted(Comparator.comparingInt(Airplane::getRange))
                 .collect(Collectors.toList());
+    }
+
+    public void addNewAirplaneToRepository(Airplane airplane) {
+        Repository.getDefaultAirplanes().add(airplane);
     }
 }
