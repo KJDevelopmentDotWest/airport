@@ -1,5 +1,6 @@
 package com.epam.jwd.repository.storage;
 
+import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import com.epam.jwd.repository.model.company.Company;
@@ -11,11 +12,11 @@ import java.util.List;
 public class Repository {
 
     private static final List<Company> companies = new ArrayList<>();
+    private static final List<Airplane> defaultAirplanes = new ArrayList<>();
 
     static {
         companies.add(new Company(
                 "CompanyOne",
-                1,
                 Arrays.asList(
                         new PassengerPlane.Builder()
                                 .withFuelConsumption(10)
@@ -53,7 +54,6 @@ public class Repository {
         ));
         companies.add(new Company(
                 "CompanyTwo",
-                2,
                 Arrays.asList(
                         new PassengerPlane.Builder()
                                 .withFuelConsumption(10)
@@ -91,22 +91,8 @@ public class Repository {
         ));
     }
 
-    public static void saveCompany(Company company){
-        companies.add(company);
-    }
-
-    public static Company findCompanyByName(String name){
-        return companies.stream()
-                .filter(company -> name.equals(company.getName()))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public static Company findCompanyById(int id){
-        return companies.stream()
-                .filter(company -> id == company.getId())
-                .findFirst()
-                .orElse(null);
+    public static List<Airplane> getDefaultAirplanes(){
+        return defaultAirplanes;
     }
 
     public static List<Company> findAllCompanies(){
