@@ -76,7 +76,8 @@ public class CargoPlane extends Airplane{
             return true;
         }
 
-        if (o instanceof CargoPlane plane) {
+        if (o instanceof CargoPlane) {
+            CargoPlane plane = (CargoPlane) o;
             flag = plane.getFuelConsumption() == fuelConsumption
                     && plane.getManufacturer().equals(manufacturer)
                     && plane.getModel().equals(model)

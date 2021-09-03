@@ -8,6 +8,7 @@ import com.epam.jwd.repository.storage.Repository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Company{
@@ -44,6 +45,32 @@ public class Company{
 
     private int generateId(){
         return Repository.findAllCompanies().size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Company company = (Company) o;
+
+        if (id != company.id) return false;
+        if (!name.equals(company.name)) return false;
+        return airplanes.equals(company.airplanes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id) + Objects.hashCode(airplanes) + Objects.hashCode(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", airplanes=" + airplanes +
+                ", id=" + id +
+                '}';
     }
 }
 
