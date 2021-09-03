@@ -7,4 +7,7 @@ public class Service {
         System.out.println("hello world2");
 
     }
+    public void aleskey(){
+
+    }
 }
