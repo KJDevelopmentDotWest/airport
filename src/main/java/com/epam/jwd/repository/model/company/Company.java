@@ -6,14 +6,13 @@ import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import com.epam.jwd.repository.storage.Repository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Company{
 
-    private final String name;
+    private String name;
     private final List<Airplane> airplanes = new ArrayList<>();
     private final int id;
 
@@ -26,6 +25,14 @@ public class Company{
     public Company(String name){
         this.name = name;
         this.id = generateId();
+    }
+
+    public Company(){
+        this.id = generateId();
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public int getId() {
