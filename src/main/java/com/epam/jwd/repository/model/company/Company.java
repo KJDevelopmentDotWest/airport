@@ -23,6 +23,11 @@ public class Company{
         airplanes.addAll(defaultAirplanes);
     }
 
+    public Company(String name){
+        this.name = name;
+        this.id = generateId();
+    }
+
     public int getId() {
         return id;
     }
