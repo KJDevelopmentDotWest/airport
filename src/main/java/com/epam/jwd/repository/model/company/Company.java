@@ -3,53 +3,86 @@ package com.epam.jwd.repository.model.company;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
+import com.epam.jwd.repository.storage.Repository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class Company {
+public class Company{
 
     private String name;
     private final List<Airplane> airplanes = new ArrayList<>();
+    private final int id;
 
     public Company(String name, List<Airplane> defaultAirplanes){
         this.name = name;
+        this.id = generateId();
         airplanes.addAll(defaultAirplanes);
+    }
+
+    public Company(String name){
+        this.name = name;
+        this.id = generateId();
+    }
+
+    public Company(){
+        this.id = generateId();
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Airplane> getAirplanes() {
-        List<Airplane> result = new ArrayList<>();
-        Collections.copy(result, airplanes);
-        return result;
+        return airplanes;
     }
 
     public List<Airplane> getPassengerAirplanes(){
-        List<Airplane> result = new ArrayList<>();
-        airplanes.forEach(airplane -> {
-            if (airplane instanceof PassengerPlane){
-                result.add(airplane);
-            }
-        });
-        return result;
+        return airplanes.stream().filter(airplane -> airplane instanceof PassengerPlane).collect(Collectors.toList());
     }
 
     public List<Airplane> getCargoAirplanes(){
-        List<Airplane> result = new ArrayList<>();
-        airplanes.forEach(airplane -> {
-            if (airplane instanceof CargoPlane){
-                result.add(airplane);
-            }
-        });
-        return result;
+        return airplanes.stream().filter(airplane -> airplane instanceof CargoPlane).collect(Collectors.toList());
+    }
+
+    private int generateId(){
+        return Repository.findAllCompanies().size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Company company = (Company) o;
+
+        if (id != company.id) return false;
+        if (!name.equals(company.name)) return false;
+        return airplanes.equals(company.airplanes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id) + Objects.hashCode(airplanes) + Objects.hashCode(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", airplanes=" + airplanes +
+                ", id=" + id +
+                '}';
     }
 }
 

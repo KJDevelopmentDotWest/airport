@@ -1,5 +1,7 @@
 package com.epam.jwd.repository.model.airplane;
 
+import java.util.Objects;
+
 public class CargoPlane extends Airplane{
 
     private int payload;
@@ -17,6 +19,7 @@ public class CargoPlane extends Airplane{
         private int payload;
         private int fuelConsumption;
         private int range;
+        private int id;
         private String manufacturer;
         private String model;
 
@@ -46,6 +49,11 @@ public class CargoPlane extends Airplane{
             return this;
         }
 
+        public Builder withId(int id){
+            this.id = id;
+            return this;
+        }
+
         public CargoPlane build(){
 
             CargoPlane cargoPlane = new CargoPlane();
@@ -54,9 +62,49 @@ public class CargoPlane extends Airplane{
             cargoPlane.setRange(range);
             cargoPlane.setManufacturer(manufacturer);
             cargoPlane.setModel(model);
+            cargoPlane.setId(id);
 
             return cargoPlane;
         }
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        boolean flag;
+
+        if (this == o) {
+            return true;
+        }
+
+        if (o instanceof CargoPlane) {
+            CargoPlane plane = (CargoPlane) o;
+            flag = plane.getFuelConsumption() == fuelConsumption
+                    && plane.getManufacturer().equals(manufacturer)
+                    && plane.getModel().equals(model)
+                    && plane.getRange() == range
+                    && plane.getPayload() == payload
+                    && plane.getId() == id;
+        } else {
+            flag = false;
+        }
+
+        return flag;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(payload) + Objects.hashCode(fuelConsumption) + Objects.hashCode(range) + Objects.hashCode(manufacturer) + Objects.hashCode(model) + Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "CargoPlane{" +
+                "fuelConsumption=" + fuelConsumption +
+                ", range=" + range +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", model='" + model + '\'' +
+                ", id='" + id + '\'' +
+                ", payload=" + payload +
+                '}';
     }
 }
