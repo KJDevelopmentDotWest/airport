@@ -81,7 +81,8 @@ public class CargoPlane extends Airplane{
                     && plane.getManufacturer().equals(manufacturer)
                     && plane.getModel().equals(model)
                     && plane.getRange() == range
-                    && plane.getPayload() == payload;
+                    && plane.getPayload() == payload
+                    && plane.getId() == id;
         } else {
             flag = false;
         }
@@ -91,7 +92,7 @@ public class CargoPlane extends Airplane{
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(payload) + Objects.hashCode(fuelConsumption) + Objects.hashCode(range) + Objects.hashCode(manufacturer) + Objects.hashCode(model);
+        return Objects.hashCode(payload) + Objects.hashCode(fuelConsumption) + Objects.hashCode(range) + Objects.hashCode(manufacturer) + Objects.hashCode(model) + Objects.hashCode(id);
     }
 
     @Override
@@ -101,6 +102,7 @@ public class CargoPlane extends Airplane{
                 ", range=" + range +
                 ", manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
+                ", id='" + id + '\'' +
                 ", payload=" + payload +
                 '}';
     }

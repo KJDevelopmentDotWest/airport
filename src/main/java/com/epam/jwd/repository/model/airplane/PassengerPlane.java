@@ -84,7 +84,8 @@ public class PassengerPlane extends Airplane{
                     && plane.getManufacturer().equals(manufacturer)
                     && plane.getModel().equals(model)
                     && plane.getRange() == range
-                    && plane.getSeats() == seats;
+                    && plane.getSeats() == seats
+                    && plane.getId() == id;
         } else {
             flag = false;
         }
@@ -94,7 +95,7 @@ public class PassengerPlane extends Airplane{
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(seats) + Objects.hashCode(fuelConsumption) + Objects.hashCode(range) + Objects.hashCode(manufacturer) + Objects.hashCode(model);
+        return Objects.hashCode(seats) + Objects.hashCode(fuelConsumption) + Objects.hashCode(range) + Objects.hashCode(manufacturer) + Objects.hashCode(model) + Objects.hashCode(id);
     }
 
 
@@ -105,6 +106,7 @@ public class PassengerPlane extends Airplane{
                 ", range=" + range +
                 ", manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
+                ", id='" + id + '\'' +
                 ", seats=" + seats +
                 '}';
     }
