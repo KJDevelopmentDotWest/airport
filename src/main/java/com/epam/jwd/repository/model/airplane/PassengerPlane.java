@@ -2,7 +2,7 @@ package com.epam.jwd.repository.model.airplane;
 
 import java.util.Objects;
 
-public class PassengerPlane extends Airplane{
+public class PassengerPlane extends Airplane {
 
     private int seats;
 
