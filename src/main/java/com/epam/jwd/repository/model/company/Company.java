@@ -46,7 +46,6 @@ public class Company{
     public List<Airplane> getAirplanes() {
         return airplanes;
     }
-
     public List<Airplane> getPassengerAirplanes(){
         return airplanes.stream().filter(airplane -> airplane instanceof PassengerPlane).collect(Collectors.toList());
     }
