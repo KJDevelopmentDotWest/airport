@@ -99,7 +99,7 @@ public class Repository {
             Object object = ois.readObject();
             if (object instanceof List){
                 companies.addAll((List<Company>) object);
-            } 
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

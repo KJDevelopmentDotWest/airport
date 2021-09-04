@@ -5,6 +5,7 @@ import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import com.epam.jwd.repository.storage.Repository;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ public class Company implements Serializable {
     private String name;
     private final List<Airplane> airplanes = new ArrayList<>();
     private final int id;
+    @Serial
+    private static final long serialVersionUID = 6529685098267757690L;
 
     public Company(String name, List<Airplane> defaultAirplanes){
         this.name = name;
