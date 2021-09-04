@@ -5,11 +5,16 @@ import com.epam.jwd.controller.impl.CountTotalPayLoad;
 import com.epam.jwd.controller.impl.FindAirplaneByFuelConsumption;
 import com.epam.jwd.controller.impl.SortAirplaneByRange;
 import com.epam.jwd.service.CompanyCreator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class CommandProvider {
+    private static final Logger logger = LogManager.getLogger(CommandProvider.class);
+
     private Map<String, Command> commands = new HashMap<>();
 
     public CommandProvider() {

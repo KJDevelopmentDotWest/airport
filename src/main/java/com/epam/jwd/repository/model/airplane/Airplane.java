@@ -1,12 +1,23 @@
 package com.epam.jwd.repository.model.airplane;
 
+import com.epam.jwd.controller.impl.SortAirplaneByRange;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.Serializable;
 
 public abstract class Airplane implements Serializable {
+
+    private static final Logger logger = LogManager.getLogger(Airplane.class);
+
     protected int fuelConsumption;
+
     protected int range;
+
     protected String manufacturer;
+
     protected String model;
+
     int id;
 
     public int getId() {
