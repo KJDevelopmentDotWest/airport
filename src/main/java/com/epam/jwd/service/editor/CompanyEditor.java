@@ -9,6 +9,7 @@ import com.epam.jwd.service.exeption.MinMaxFuelConsumptionExeption;
 import com.epam.jwd.service.exeption.WrongIdException;
 import com.epam.jwd.service.validator.CompanyValidator;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +40,10 @@ public class CompanyEditor {
                 .filter(airplane -> airplane.getId() == id)
                 .findFirst()
                 .get());
+    }
+
+    public List<Airplane> getCompanyAirplanes() {
+        return Collections.unmodifiableList(company.getAirplanes());
     }
 
     public int countTotalCapacity() {
