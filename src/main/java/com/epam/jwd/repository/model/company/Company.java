@@ -4,7 +4,7 @@ import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import com.epam.jwd.repository.storage.Repository;
-;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

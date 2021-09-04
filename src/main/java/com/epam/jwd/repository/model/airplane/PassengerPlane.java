@@ -5,6 +5,7 @@ import java.util.Objects;
 public class PassengerPlane extends Airplane {
 
     private int seats;
+    private static final long serialVersionUID = 6529685098267757691L;
 
     private PassengerPlane(){}
 

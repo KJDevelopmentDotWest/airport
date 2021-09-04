@@ -5,6 +5,7 @@ import java.util.Objects;
 public class CargoPlane extends Airplane{
 
     private int payload;
+    private static final long serialVersionUID = 6529685098267757692L;
 
     private void setPayload(int payload) {
         this.payload = payload;
