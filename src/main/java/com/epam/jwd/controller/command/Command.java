@@ -5,4 +5,6 @@ import com.epam.jwd.service.exeption.WrongIdException;
 
 public interface Command {
     String execute() throws MinMaxFuelConsumptionExeption, WrongIdException;
+
+
 }

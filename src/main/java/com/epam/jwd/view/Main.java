@@ -1,6 +1,5 @@
 package com.epam.jwd.view;
 
-
 import com.epam.jwd.repository.storage.Repository;
 
 public class Main {
@@ -9,3 +8,6 @@ public class Main {
         System.out.println(Repository.findAllCompanies().get(0));
     }
 }
+
+
+

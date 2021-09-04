@@ -48,7 +48,7 @@ public class Company implements Serializable {
     public List<Airplane> getAirplanes() {
         return airplanes;
     }
-    public List<Airplane> getPassengerAirplanes(){
+    public  List<Airplane> getPassengerAirplanes(){
         return airplanes.stream().filter(airplane -> airplane instanceof PassengerPlane).collect(Collectors.toList());
     }
 
