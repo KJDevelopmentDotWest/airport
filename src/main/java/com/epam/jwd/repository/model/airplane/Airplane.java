@@ -1,6 +1,5 @@
 package com.epam.jwd.repository.model.airplane;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public abstract class Airplane implements Serializable {
@@ -9,7 +8,6 @@ public abstract class Airplane implements Serializable {
     protected String manufacturer;
     protected String model;
     int id;
-    @Serial
     private static final long serialVersionUID = 6529685098267757699L;
 
     public int getId() {
