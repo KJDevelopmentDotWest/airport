@@ -1,6 +1,6 @@
 package com.epam.jwd.service.validator;
 
-public class CompanyCreatorValidator {
+public class CompanyValidator {
     public static boolean validateMinMaxFuelConsumption(int minFuelConsumption, int maxFuelConsumption) {
         return (minFuelConsumption < maxFuelConsumption) && minFuelConsumption > 0 && maxFuelConsumption > 0;
     }
