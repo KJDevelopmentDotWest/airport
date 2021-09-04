@@ -1,6 +1,5 @@
 package com.epam.jwd.repository.model.company;
 
-import com.epam.jwd.controller.impl.SortAirplaneByRange;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
@@ -55,6 +54,7 @@ public class Company implements Serializable {
     public List<Airplane> getAirplanes() {
         return airplanes;
     }
+
     public List<Airplane> getPassengerAirplanes(){
         return airplanes.stream().filter(airplane -> airplane instanceof PassengerPlane).collect(Collectors.toList());
     }
