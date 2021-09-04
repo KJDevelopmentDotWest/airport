@@ -55,6 +55,7 @@ public class Company implements Serializable {
     public List<Airplane> getAirplanes() {
         return airplanes;
     }
+
     public List<Airplane> getPassengerAirplanes(){
         return airplanes.stream().filter(airplane -> airplane instanceof PassengerPlane).collect(Collectors.toList());
     }
@@ -64,7 +65,7 @@ public class Company implements Serializable {
     }
 
     private int generateId(){
-        return Repository.findAllCompanies().size();
+        return Repository.findAllCompanies().get(Repository.findAllCompanies().size()-1).getId();
     }
 
     @Override
