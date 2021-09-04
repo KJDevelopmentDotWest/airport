@@ -4,6 +4,8 @@ import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import com.epam.jwd.repository.model.company.Company;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,8 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Repository {
+    private static final Logger logger = LogManager.getLogger(Repository.class);
 
     private static final List<Company> companies = new ArrayList<>();
+
     private static final List<Airplane> defaultAirplanes = new ArrayList<>();
 
 //    static {
@@ -101,11 +105,11 @@ public class Repository {
                 companies.addAll((List<Company>) object);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error("FileNotFoundException happened", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("IOException happened", e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error("ClassNotFoundException happened", e);
         }
     }
 
@@ -118,13 +122,14 @@ public class Repository {
     }
 
     public static void saveAllToMemory(){
+        logger.info("We're in saveAllToMemoryMethod");
         try (FileOutputStream fos = new FileOutputStream("src/main/resources/data.txt");
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(companies);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error("FileNotFoundException happened", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("IOException happened", e);
         }
     }
 }

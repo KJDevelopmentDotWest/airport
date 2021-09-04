@@ -1,9 +1,12 @@
 package com.epam.jwd.repository.model.company;
 
+import com.epam.jwd.controller.impl.SortAirplaneByRange;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import com.epam.jwd.repository.storage.Repository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,11 +15,15 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Company implements Serializable {
+    private static final Logger logger = LogManager.getLogger(Company.class);
+
+    private static final long serialVersionUID = 6529685098267757690L;
+
+    private final List<Airplane> airplanes = new ArrayList<>();
+
+    private final int id;
 
     private String name;
-    private final List<Airplane> airplanes = new ArrayList<>();
-    private final int id;
-    private static final long serialVersionUID = 6529685098267757690L;
 
     public Company(String name, List<Airplane> defaultAirplanes){
         this.name = name;

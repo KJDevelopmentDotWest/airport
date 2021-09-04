@@ -5,8 +5,11 @@ import com.epam.jwd.controller.command.CommandProvider;
 import com.epam.jwd.controller.command.Controller;
 import com.epam.jwd.service.exeption.MinMaxFuelConsumptionExeption;
 import com.epam.jwd.service.exeption.WrongIdException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ControllerImpl implements Controller {
+    private static final Logger logger = LogManager.getLogger(ControllerImpl.class);
 
     private CommandProvider provider = new CommandProvider();
 
