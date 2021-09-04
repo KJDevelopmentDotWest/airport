@@ -8,7 +8,6 @@ public abstract class Airplane implements Serializable {
     protected String manufacturer;
     protected String model;
     int id;
-    private static final long serialVersionUID = 6529685098267757699L;
 
     public int getId() {
         return id;
