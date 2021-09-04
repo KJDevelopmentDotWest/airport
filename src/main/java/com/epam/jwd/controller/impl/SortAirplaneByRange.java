@@ -2,15 +2,17 @@ package com.epam.jwd.controller.impl;
 
 import com.epam.jwd.controller.command.Command;
 import com.epam.jwd.repository.model.airplane.Airplane;
-import com.epam.jwd.service.CompanyCreator;
+import com.epam.jwd.repository.model.company.Company;
+import com.epam.jwd.service.editor.CompanyEditor;
 
 import java.util.List;
 
 public class SortAirplaneByRange implements Command {
     @Override
     public String execute() {
-        CompanyCreator companyCreator = new CompanyCreator("MyCompany");
-        List<Airplane> airplane = companyCreator.sortAirplaneByRange();
-        return airplane.toString();
+        Company company = new Company();
+        CompanyEditor companyEditor = new CompanyEditor(company);
+        List<Airplane> sortAirplaneByRange = companyEditor.sortAirplaneByRange();
+        return sortAirplaneByRange.toString();
     }
 }

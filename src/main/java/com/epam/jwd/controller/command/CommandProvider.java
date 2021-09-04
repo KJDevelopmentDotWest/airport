@@ -4,7 +4,6 @@ import com.epam.jwd.controller.impl.CountTotalCapacity;
 import com.epam.jwd.controller.impl.CountTotalPayLoad;
 import com.epam.jwd.controller.impl.FindAirplaneByFuelConsumption;
 import com.epam.jwd.controller.impl.SortAirplaneByRange;
-import com.epam.jwd.service.CompanyCreator;
 
 import java.util.HashMap;
 import java.util.Map;
