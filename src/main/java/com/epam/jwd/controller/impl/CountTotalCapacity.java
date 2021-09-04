@@ -1,6 +1,8 @@
 package com.epam.jwd.controller.impl;
 
 import com.epam.jwd.controller.command.Command;
+import com.epam.jwd.repository.model.company.Company;
+import com.epam.jwd.service.editor.CompanyEditor;
 import com.epam.jwd.controller.command.CommandProvider;
 import com.epam.jwd.service.CompanyCreator;
 import org.apache.logging.log4j.LogManager;
@@ -11,9 +13,10 @@ public class CountTotalCapacity implements Command {
 
     @Override
     public String execute() {
-        CompanyCreator companyCreator = new CompanyCreator("MyCompany");
-        int count = companyCreator.countTotalCapacity();
-        String str = " " + count;
+        Company company = new Company();
+        CompanyEditor companyEditor = new CompanyEditor(company);
+        int countTotalCapacity = companyEditor.countTotalCapacity();
+        String str = " " + countTotalCapacity;
         return str;
     }
 }
