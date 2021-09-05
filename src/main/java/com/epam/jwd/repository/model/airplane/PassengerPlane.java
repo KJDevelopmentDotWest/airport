@@ -1,6 +1,6 @@
 package com.epam.jwd.repository.model.airplane;
 
-import com.epam.jwd.controller.impl.SortAirplaneByRange;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,6 +8,8 @@ import java.util.Objects;
 
 public class PassengerPlane extends Airplane {
     private static final Logger logger = LogManager.getLogger(PassengerPlane.class);
+
+    private static final String MESSAGE =  "We're in build method";
 
     private int seats;
 
@@ -64,7 +66,7 @@ public class PassengerPlane extends Airplane {
         }
 
         public PassengerPlane build(){
-            logger.info("We're in build method");
+            logger.info(MESSAGE);
             PassengerPlane passengerPlane = new PassengerPlane();
             passengerPlane.setSeats(seats);
             passengerPlane.setFuelConsumption(fuelConsumption);

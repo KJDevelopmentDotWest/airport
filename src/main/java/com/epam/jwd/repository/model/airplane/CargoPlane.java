@@ -1,6 +1,6 @@
 package com.epam.jwd.repository.model.airplane;
 
-import com.epam.jwd.controller.impl.SortAirplaneByRange;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,6 +9,8 @@ import java.util.Objects;
 public class CargoPlane extends Airplane{
 
     private static final Logger logger = LogManager.getLogger(CargoPlane.class);
+
+    private static final String MESSAGE =  "We're in build method";
 
     private static final long serialVersionUID = 6529685098267757692L;
 
@@ -63,7 +65,7 @@ public class CargoPlane extends Airplane{
         }
 
         public CargoPlane build(){
-            logger.info("We're in build method.");
+            logger.info(MESSAGE);
             CargoPlane cargoPlane = new CargoPlane();
             cargoPlane.setPayload(payload);
             cargoPlane.setFuelConsumption(fuelConsumption);

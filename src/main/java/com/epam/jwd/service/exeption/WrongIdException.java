@@ -1,6 +1,11 @@
 package com.epam.jwd.service.exeption;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class WrongIdException extends Exception {
+    private static final Logger logger = LogManager.getLogger(WrongIdException.class);
+
     public WrongIdException() {
     }
 
