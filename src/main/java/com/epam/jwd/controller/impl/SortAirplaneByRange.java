@@ -4,7 +4,6 @@ import com.epam.jwd.controller.command.Command;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.company.Company;
 import com.epam.jwd.service.editor.CompanyEditor;
-import com.epam.jwd.service.CompanyCreator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

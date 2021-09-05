@@ -65,7 +65,11 @@ public class Company implements Serializable {
     }
 
     private int generateId(){
-        return Repository.findAllCompanies().get(Repository.findAllCompanies().size()-1).getId();
+        if (Repository.findAllCompanies().size() == 0){
+            return 0;
+        } else {
+            return Repository.findAllCompanies().get(Repository.findAllCompanies().size()-1).getId();
+        }
     }
 
     @Override
