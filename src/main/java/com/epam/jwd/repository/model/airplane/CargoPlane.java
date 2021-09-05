@@ -10,6 +10,8 @@ public class CargoPlane extends Airplane{
 
     private static final Logger logger = LogManager.getLogger(CargoPlane.class);
 
+    private static final String MESSAGE =  "We're in build method";
+
     private static final long serialVersionUID = 6529685098267757692L;
 
     private int payload;
@@ -63,7 +65,7 @@ public class CargoPlane extends Airplane{
         }
 
         public CargoPlane build(){
-            logger.info("We're in build method.");
+            logger.info(MESSAGE);
             CargoPlane cargoPlane = new CargoPlane();
             cargoPlane.setPayload(payload);
             cargoPlane.setFuelConsumption(fuelConsumption);

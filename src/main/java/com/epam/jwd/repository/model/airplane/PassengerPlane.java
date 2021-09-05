@@ -9,6 +9,8 @@ import java.util.Objects;
 public class PassengerPlane extends Airplane {
     private static final Logger logger = LogManager.getLogger(PassengerPlane.class);
 
+    private static final String MESSAGE =  "We're in build method";
+
     private int seats;
 
     private static final long serialVersionUID = 6529685098267757691L;
@@ -64,7 +66,7 @@ public class PassengerPlane extends Airplane {
         }
 
         public PassengerPlane build(){
-            logger.info("We're in build method");
+            logger.info(MESSAGE);
             PassengerPlane passengerPlane = new PassengerPlane();
             passengerPlane.setSeats(seats);
             passengerPlane.setFuelConsumption(fuelConsumption);

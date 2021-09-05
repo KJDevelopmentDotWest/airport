@@ -19,9 +19,13 @@ public class Repository {
     private static final List<Company> companies = new ArrayList<>();
 
     private static final List<Airplane> defaultAirplanes = new ArrayList<>();
+
     private static final String STRING_FILE_NOT_FOUND_EXCEPTION = "FileNotFoundException happened";
+
     private static final String STRING_IO_EXCEPTION = "IOException happened";
+
     private static final String PATH = "src/main/resources/data.txt";
+
     private static final String STRING_SAVE_ALL_TO_MEMORY = "We're in saveAllToMemoryMethod";
 
     static {
