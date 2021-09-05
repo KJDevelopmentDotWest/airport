@@ -1,6 +1,5 @@
 package com.epam.jwd.repository.model.airplane;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
