@@ -56,6 +56,10 @@ public class Controller {
         return new CompanyEditor(company).getCompanyAirplanes();
 
     }
+    public static void deleteAirplaneFromCompany (Company company, int id){
+         new CompanyEditor(company).deleteAirplaneFromCompany(id);
+
+    }
     //В новой ветке Controller
     //calculate payload
     //sort by range
