@@ -56,6 +56,7 @@ public class Controller {
         return new CompanyEditor(company).getCompanyAirplanes();
 
     }
+    //В новой ветке Controller
     //calculate payload
     //sort by range
     //find by fuel consumption range
