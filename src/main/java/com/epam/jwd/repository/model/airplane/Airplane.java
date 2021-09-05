@@ -1,6 +1,6 @@
 package com.epam.jwd.repository.model.airplane;
 
-import com.epam.jwd.controller.impl.SortAirplaneByRange;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

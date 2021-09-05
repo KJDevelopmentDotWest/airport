@@ -103,6 +103,15 @@ public class Repository {
                                 .build()
                 )
         ));
+
+        defaultAirplanes.add(new CargoPlane.Builder()
+                .withFuelConsumption(40)
+                .withManufacturer("Airbus")
+                .withModel("A300")
+                .withRange(4000)
+                .withPayload(8000)
+                .withId(4)
+                .build());
     }
 
 //    static {

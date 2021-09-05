@@ -17,7 +17,7 @@ public class RepositoryReader {
         return Collections.unmodifiableList(Repository.findAllCompanies());
     }
 
-    public static List<Airplane> getAirplanes() {
+    public static List<Airplane> getDefaultAirplanes() {
         return Collections.unmodifiableList(Repository.getDefaultAirplanes());
     }
 }

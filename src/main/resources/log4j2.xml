@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="debug" strict="true"
+<Configuration status="off" strict="true"
                name="XMLConfigTest" packages="org.apache.logging.log4j.test">
-    <Filter type="ThresholdFilter" level="INFO" />
+    <Filter type="ThresholdFilter" level="WARN" />
     <!--    TRACE < DEBUG < INFO < WARN < ERROR < FATAL-->
     <Appenders>
         <Console name="STDOUT">
@@ -21,7 +21,7 @@
     </Appenders>
 
     <Loggers>
-        <Root level="INFO">
+        <Root level="WARN">
             <AppenderRef ref="STDOUT" />
             <AppenderRef ref="rollingFileSize" />
         </Root>

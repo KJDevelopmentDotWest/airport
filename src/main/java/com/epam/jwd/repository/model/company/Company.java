@@ -1,6 +1,5 @@
 package com.epam.jwd.repository.model.company;
 
-import com.epam.jwd.controller.impl.SortAirplaneByRange;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
@@ -68,7 +67,7 @@ public class Company implements Serializable {
         if (Repository.findAllCompanies().size() == 0){
             return 0;
         } else {
-            return Repository.findAllCompanies().get(Repository.findAllCompanies().size()-1).getId();
+            return Repository.findAllCompanies().get(Repository.findAllCompanies().size()-1).getId() + 1;
         }
     }
 

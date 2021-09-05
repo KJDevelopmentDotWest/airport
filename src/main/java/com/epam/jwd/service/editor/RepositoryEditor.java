@@ -19,16 +19,6 @@ public class RepositoryEditor {
 
     private static final String SAVE_REPOSITORY_TO_FIELD_MESSAGE = "We're in saveRepositoryToField method";
 
-    public static void addAirplaneToRepository(Airplane airplane) {
-        logger.debug(ADD_AIRPLANE_TO_REPOSITORY_MESSAGE);
-        Repository.getDefaultAirplanes().add(airplane);
-    }
-
-    public static void deleteAirplaneFromRepository(Airplane airplane) {
-        logger.debug(DELETE_AIRPLANE_FROM_REPOSITORY_MESSAGE);
-        Repository.getDefaultAirplanes().remove(airplane);
-    }
-
     public static void addCompanyToRepository(Company company) {
         logger.debug(ADD_COMPANY_TO_REPOSITORY_MESSAGE);
         Repository.findAllCompanies().add(company);
