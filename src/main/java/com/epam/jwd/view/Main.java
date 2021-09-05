@@ -1,6 +1,7 @@
 package com.epam.jwd.view;
 
 import com.epam.jwd.controller.Controller;
+import com.epam.jwd.repository.model.company.Company;
 import com.epam.jwd.service.editor.CompanyEditor;
 import com.epam.jwd.service.exeption.MinMaxFuelConsumptionExeption;
 import com.epam.jwd.service.exeption.WrongIdException;
@@ -25,6 +26,8 @@ public class Main {
         System.out.println(Controller.sortByRange(RepositoryReader.getCompanies().get(0)));
         System.out.println(Controller.sortByFuelConsumptionRange(RepositoryReader.getCompanies().get(0)));
         System.out.println(Controller.getCompany(RepositoryReader.getCompanies().get(2)));
+        Controller.deleteAirplaneFromCompany(RepositoryReader.getCompanies().get(1),2);
+        System.out.println(RepositoryReader.getCompanies().get(1).getAirplanes());
 
     }
 
