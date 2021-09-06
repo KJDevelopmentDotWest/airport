@@ -27,6 +27,8 @@ public class View {
 
     private static final String PRINT_COMPANY_PASSENGERS_AIRPLANES_METHOD_MESSAGE = "We're at printCompanyPassengersAirplanes method";
 
+    private static final String PRINT_COMPANY_METHOD_MESSAGE = "We're at printCompany method";
+
     private static final String START_MESSAGE ="" ;
 
     private static final String menu = "\n" +
@@ -42,32 +44,34 @@ public class View {
             "10. Save to memory\n" +
             "11. Exit";
 
+
     private static Company selectedCompany;
+
     private static boolean whileState = true;
 
     private static int readInt() {
         Scanner scanner = new Scanner(System.in);
-        int choise = 0;
+        int choice = 0;
         try {
-            choise = scanner.nextInt();
+            choice = scanner.nextInt();
         } catch (Exception e) {
             whileState = false;
             logger.error(INCORRECT_CHOICE_MESSAGE, e);
         }
-        return choise;
+        return choice;
     }
 
     private static int readInt(String message) {
         System.out.println(message);
         Scanner scanner = new Scanner(System.in);
-        int choise = 0;
+        int choice = 0;
         try {
-            choise = scanner.nextInt();
+            choice = scanner.nextInt();
         } catch (Exception e) {
             whileState = false;
             logger.error(INCORRECT_CHOICE_MESSAGE, e);
         }
-        return choise;
+        return choice;
     }
 
     private static String readString() {
@@ -83,6 +87,7 @@ public class View {
     }
 
     private static void printCompanies() {
+        logger.debug(PRINT_COMPANY_METHOD_MESSAGE);
         Controller.getCompanies().stream()
                 .forEach(company1 -> System.out.println(String.format("Company: %s (id=%d) ", company1.getName(), company1.getId())));
     }
