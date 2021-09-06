@@ -40,10 +40,10 @@ public class CompanyEditor {
     public void addAirplaneToCompany(int id) throws WrongIdException {
         logger.debug(START_ADD_AIRPLANE_TO_COMPANY_METHOD_MESSAGE);
         if (Validator.validateId(id)) {
-            company.getAirplanes().add(Repository.getDefaultAirplanes().stream()
+            Repository.getDefaultAirplanes().stream()
                     .filter(airplane -> airplane.getId() == id)
                     .findFirst()
-                    .get());
+                    .ifPresent(airplaneToAdd ->  company.getAirplanes().add(airplaneToAdd));
         } else {
             logger.info(ID_ERROR_MESSAGE);
             throw new WrongIdException(ID_ERROR_MESSAGE);
@@ -55,7 +55,8 @@ public class CompanyEditor {
         logger.debug(START_DELETE_AIRPLANE_FROM_COMPANY_METHOD_MESSAGE);
         company.getAirplanes().stream()
                 .filter(airplane -> airplane.getId() == id)
-                .findFirst().ifPresent(airplaneToDelete -> company.getAirplanes().remove(airplaneToDelete));
+                .findFirst()
+                .ifPresent(airplaneToDelete -> company.getAirplanes().remove(airplaneToDelete));
         logger.debug(END_DELETE_AIRPLANE_FROM_COMPANY_METHOD_MESSAGE);
     }
 
@@ -88,7 +89,7 @@ public class CompanyEditor {
                             && airplane.getFuelConsumption() <= maxFuelConsumption)
                     .collect(Collectors.toList());
         } else {
-            logger.info(MIN_MAX_FUELCONSUMPTION_ERROR_MESSAGE);
+            logger.error(MIN_MAX_FUELCONSUMPTION_ERROR_MESSAGE);
             throw new MinMaxFuelConsumptionExeption(MIN_MAX_FUELCONSUMPTION_ERROR_MESSAGE);
         }
     }
