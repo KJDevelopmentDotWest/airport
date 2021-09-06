@@ -111,13 +111,11 @@ public class PassengerPlane extends Airplane {
 
     @Override
     public String toString() {
-        return "PassengerPlane{" +
-                "fuelConsumption=" + fuelConsumption +
-                ", range=" + range +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", model='" + model + '\'' +
-                ", id='" + id + '\'' +
-                ", seats=" + seats +
-                '}';
+        return "PassengerPlane " + "id=" + id + " "
+                + manufacturer + " "
+                + model + " " +
+                "Fuel Consumption = " + fuelConsumption + " "+
+                "Range = " + range +" "+
+                "Seats = " + seats;
     }
 }
