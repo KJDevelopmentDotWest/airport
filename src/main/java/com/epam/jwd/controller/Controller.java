@@ -27,15 +27,22 @@ public class Controller {
 
     private static final String FIND_BY_CONSUMPTION_MESSAGE = "We're in findByConsumption method";
 
-    public static Company createCompany(String companyName){
-        CompanyCreator companyCreator = new CompanyCreator(companyName);
-        return companyCreator.getCompany();
-    }
+    private static final String CREATE_COMPANY_METHOD_MESSAGE = "We're in createCompany message";
 
-    public static void addAirplanesToCompany(Company company, int id) throws WrongIdException{
-        CompanyEditor companyEditor = new CompanyEditor(company);
-        companyEditor.addAirplaneToCompany(id);
-    }
+    private static final String ADD_AIRPLANES_TO_COMPANY_METHOD_MESSAGE = "We're at addAirplaneToCompany method";
+
+    private static final String CALCULATE_TOTAL_CAPACITY_METHOD_MESSAGE = "We're at calculateTotalCapacity method";
+
+    private static final String SAVE_TO_MEMORY_METHOD_MESSAGE = "We're at saveToMemory method";
+
+    private static final String CALCULATE_PAYLOAD_METHOD_MESSAGE = "We're at calculatePayload method";
+
+    private static final String SORT_BY_RANGE_METHOD_MESSAGE = "We're at sortByRange method";
+
+    private static final String DELETE_AIRPLANE_FROM_COMPANY_METHOD_MESSAGE ="We're at deleteAirplaneFromCompany method";
+
+    private static final String SORT_AIRPLANE_BY_RANGE_METHOD_MESSAGE = "We're at sortAirplaneByRange method";
+
 
     public static List<Airplane> getDefaultAirplanes(){
         return RepositoryReader.getDefaultAirplanes();
@@ -45,42 +52,61 @@ public class Controller {
         return RepositoryReader.getCompanies();
     }
 
+    public static List<Airplane> getCompanyAirplanes (Company company){
+        return new CompanyEditor(company).getCompanyAirplanes();
+    }
+
+    public static Company createCompany(String companyName){
+        logger.debug(CREATE_COMPANY_METHOD_MESSAGE);
+        CompanyCreator companyCreator = new CompanyCreator(companyName);
+        return companyCreator.getCompany();
+    }
+
+    public static void addAirplanesToCompany(Company company, int id) throws WrongIdException{
+        logger.debug(ADD_AIRPLANES_TO_COMPANY_METHOD_MESSAGE);
+        CompanyEditor companyEditor = new CompanyEditor(company);
+        companyEditor.addAirplaneToCompany(id);
+    }
+
     public static int calculateTotalCapacity(Company company){
+        logger.debug(CALCULATE_TOTAL_CAPACITY_METHOD_MESSAGE);
         return new CompanyEditor(company).countTotalCapacity();
     }
 
     public static void saveToMemory(){
-
+        logger.debug(SAVE_TO_MEMORY_METHOD_MESSAGE);
         RepositoryEditor.saveRepositoryToFile();
     }
 
     public static int calculatePayload (Company company){
-
+        logger.debug(CALCULATE_PAYLOAD_METHOD_MESSAGE);
         return new CompanyEditor(company).countTotalPayload();
     }
 
     public static List<Airplane> sortByRange(Company company){
+        logger.debug(SORT_BY_RANGE_METHOD_MESSAGE);
         return new CompanyEditor(company).sortAirplaneByRange();
     }
 
     public static List<Airplane> findByFuelConsumptionRange(Company company) throws MinMaxFuelConsumptionExeption {
+        logger.debug(FIND_BY_CONSUMPTION_MESSAGE);
         return new CompanyEditor(company).findAirplaneByFuelConsumption(10,20);
     }
 
-    public static List<Airplane> getCompanyAirplanes (Company company){
-        return new CompanyEditor(company).getCompanyAirplanes();
 
-    }
     public static void deleteAirplaneFromCompany (Company company, int id){
-         new CompanyEditor(company).deleteAirplaneFromCompany(id);
+        logger.debug(DELETE_AIRPLANE_FROM_COMPANY_METHOD_MESSAGE);
+        new CompanyEditor(company).deleteAirplaneFromCompany(id);
 
     }
 
     public static List<Airplane> findAirplaneByFuelConsumption(Company company, int minFuelConsumption, int maxFuelConsumption) throws MinMaxFuelConsumptionExeption {
+        logger.debug(FIND_BY_CONSUMPTION_MESSAGE);
         return new CompanyEditor(company).findAirplaneByFuelConsumption(minFuelConsumption, maxFuelConsumption);
     }
 
     public static List<Airplane> sortAirplaneByRange(Company company){
+        logger.debug(SORT_AIRPLANE_BY_RANGE_METHOD_MESSAGE);
         return new CompanyEditor(company).sortAirplaneByRange();
     }
 }

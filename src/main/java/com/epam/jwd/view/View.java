@@ -13,9 +13,22 @@ import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
 public class View {
-    private final static String INCORRECT_CHOISE_MESSAGE = "Incorrect choice";
-    private final static String INPUT_LETTER_MESSAGE = "Input letter:";
     private static final Logger logger = LogManager.getLogger(View.class);
+
+    private final static String INCORRECT_CHOICE_MESSAGE = "Incorrect choice";
+
+    private final static String INPUT_LETTER_MESSAGE = "Input letter:";
+
+    private static final String PRINT_DEFAULT_AIRPLANES_METHOD_MESSAGE = "We're at printDefaultAirplanes method";
+
+    private static final String PRINT_COMPANY_AIRPLANES_METHOD_MESSAGE ="We're at printCompanyAirplanes method";
+
+    private static final String PRINT_COMPANY_CARGO_AIRPLANES_METHOD_MESSAGE ="We're at printCompanyCargoAirplanes method";
+
+    private static final String PRINT_COMPANY_PASSENGERS_AIRPLANES_METHOD_MESSAGE = "We're at printCompanyPassengersAirplanes method";
+
+    private static final String START_MESSAGE ="" ;
+
     private static final String menu = "\n" +
             "1. Create company\n" +
             "2. Select company to edit\n" +
@@ -28,6 +41,7 @@ public class View {
             "9. Sort airplanes by range\n" +
             "10. Save to memory\n" +
             "11. Exit";
+
     private static Company selectedCompany;
     private static boolean whileState = true;
 
@@ -38,7 +52,7 @@ public class View {
             choise = scanner.nextInt();
         } catch (Exception e) {
             whileState = false;
-            logger.error(INCORRECT_CHOISE_MESSAGE, e);
+            logger.error(INCORRECT_CHOICE_MESSAGE, e);
         }
         return choise;
     }
@@ -51,7 +65,7 @@ public class View {
             choise = scanner.nextInt();
         } catch (Exception e) {
             whileState = false;
-            logger.error(INCORRECT_CHOISE_MESSAGE, e);
+            logger.error(INCORRECT_CHOICE_MESSAGE, e);
         }
         return choise;
     }
@@ -63,7 +77,7 @@ public class View {
             return scanner.nextLine();
         } catch (Exception e) {
             whileState = false;
-            logger.error(INCORRECT_CHOISE_MESSAGE, e);
+            logger.error(INCORRECT_CHOICE_MESSAGE, e);
         }
         return "";
     }
@@ -74,17 +88,20 @@ public class View {
     }
 
     private static void printDefaultAirplanes() {
+        logger.debug(PRINT_DEFAULT_AIRPLANES_METHOD_MESSAGE);
         Controller.getDefaultAirplanes().stream()
                 .forEach(System.out::println);
     }
 
     private static void printCompanyAirplanes() {
+        logger.debug(PRINT_COMPANY_AIRPLANES_METHOD_MESSAGE);
         System.out.println("List of " + selectedCompany.getName() + " airplanes");
         Controller.getCompanyAirplanes(selectedCompany).stream()
                 .forEach(System.out::println);
     }
 
     private static void printCompanyCargoAirplanes() {
+        logger.debug(PRINT_COMPANY_CARGO_AIRPLANES_METHOD_MESSAGE);
         System.out.println("List of " + selectedCompany.getName() + " cargo airplanes:");
         Controller.getCompanyAirplanes(selectedCompany).stream()
                 .filter(airplane -> airplane instanceof CargoPlane)
@@ -92,6 +109,7 @@ public class View {
     }
 
     private static void printCompanyPassengersAirplanes() {
+        logger.debug(PRINT_COMPANY_PASSENGERS_AIRPLANES_METHOD_MESSAGE);
         System.out.println("List of " + selectedCompany.getName() + " passengers airplanes:");
         Controller.getCompanyAirplanes(selectedCompany).stream()
                 .filter(airplane -> airplane instanceof PassengerPlane)
@@ -99,6 +117,7 @@ public class View {
     }
 
     public void start(Level logLevel) throws WrongIdException, MinMaxFuelConsumptionExeption {
+        logger.debug(START_MESSAGE);
         while (whileState) {
             if (selectedCompany != null) {
                 System.out.println("\n* Selected company to edit: " + selectedCompany.getName());
