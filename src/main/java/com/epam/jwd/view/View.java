@@ -31,7 +31,22 @@ public class View {
             "9. Sort airplanes by range\n" +
             "10. Save to memory\n" +
             "11. Exit";
+    private static final String STRING_LIST_OF = "List of ";
     public static final String STRING_PLEASE_SELECT_COMPANY = "Please select company";
+    public static final String STRING_SORTED_BY_RANGE_AIRPLANES = "Sorted by range airplanes:";
+    public static final String STRING_ENTER_MIN_FUEL_CONSUMPTION = "Enter min Fuel Consumption:";
+    public static final String STRING_ENTER_MAX_FUEL_CONSUMPTION = "Enter max Fuel Consumption:";
+    public static final String STRING_FIND_AIRPLANE_BY_RANGE_OF_FUEL_CONSUMPTION = "Find Airplane by range of Fuel Consumption";
+    public static final String STRING_TOTAL_CAPACITY = "Total capacity of all company`s passenger airplanes:";
+    public static final String STRING_TOTAL_PAYLOAD = "Total payload of all company`s cargo airplanes: ";
+    public static final String STRING_SELECT_AIRPLANE_ID = "Select airplane id:";
+    public static final String STRING_SELECT_COMPANY_ID = "Select company id:";
+    public static final String STRING_ENTER_COMPANY_NAME = "Enter company name:";
+    public static final String STRING_SELECTED_COMPANY = "\n* Selected company to edit: ";
+    public static final String STRING_COMPANY = "Company: %s (id=%d) %n";
+    public static final String STRING_AIRPLANES = " airplanes";
+    public static final String STRING_CARGO_AIRPLANES = " cargo airplanes:";
+    public static final String STRING_PASSENGERS_AIRPLANES = " passengers airplanes:";
     private static Company selectedCompany;
     private static boolean whileState = true;
 
@@ -91,7 +106,7 @@ public class View {
 
     private void printCompanies() {
         Controller.getCompanies()
-                .forEach(company1 -> System.out.printf("Company: %s (id=%d) %n", company1.getName(), company1.getId()));
+                .forEach(company1 -> System.out.printf(STRING_COMPANY, company1.getName(), company1.getId()));
     }
 
     private void printDefaultAirplanes() {
@@ -100,20 +115,20 @@ public class View {
     }
 
     private void printCompanyAirplanes() {
-        System.out.println("List of " + selectedCompany.getName() + " airplanes");
+        System.out.println(STRING_LIST_OF + selectedCompany.getName() + STRING_AIRPLANES);
         Controller.getCompanyAirplanes(selectedCompany)
                 .forEach(System.out::println);
     }
 
     private void printCompanyCargoAirplanes() {
-        System.out.println("List of " + selectedCompany.getName() + " cargo airplanes:");
+        System.out.println(STRING_LIST_OF + selectedCompany.getName() + STRING_CARGO_AIRPLANES);
         Controller.getCompanyAirplanes(selectedCompany).stream()
                 .filter(airplane -> airplane instanceof CargoPlane)
                 .forEach(System.out::println);
     }
 
     private void printCompanyPassengersAirplanes() {
-        System.out.println("List of " + selectedCompany.getName() + " passengers airplanes:");
+        System.out.println(STRING_LIST_OF + selectedCompany.getName() + STRING_PASSENGERS_AIRPLANES);
         Controller.getCompanyAirplanes(selectedCompany).stream()
                 .filter(airplane -> airplane instanceof PassengerPlane)
                 .forEach(System.out::println);
@@ -122,7 +137,7 @@ public class View {
     public void start(Level logLevel) {
         while (whileState) {
             if (selectedCompany != null) {
-                System.out.println("\n* Selected company to edit: " + selectedCompany.getName());
+                System.out.println(STRING_SELECTED_COMPANY + selectedCompany.getName());
             }
             System.out.println(menu);
             userInputToPerformerMap.get(readInt()).execute();
@@ -130,19 +145,19 @@ public class View {
     }
 
     private void createCompanyOption(){
-        selectedCompany = Controller.createCompany(readString("Enter company name:"));
+        selectedCompany = Controller.createCompany(readString(STRING_ENTER_COMPANY_NAME));
     }
 
     private void getCompanyByIdOption(){
         printCompanies();
-        selectedCompany = Controller.getCompanies().get(readInt("Select company id:"));
+        selectedCompany = Controller.getCompanies().get(readInt(STRING_SELECT_COMPANY_ID));
     }
 
     private void addAirplaneToCompanyOption(){
         if (selectedCompany != null){
             printDefaultAirplanes();
             try {
-                Controller.addAirplanesToCompany(selectedCompany, readInt("Select airplane id:"));
+                Controller.addAirplanesToCompany(selectedCompany, readInt(STRING_SELECT_AIRPLANE_ID));
             } catch (WrongIdException e) {
                 logger.error(e);
             }
@@ -155,7 +170,7 @@ public class View {
     private void deleteAirplaneFromCompanyOption(){
         if (selectedCompany != null){
             printCompanyAirplanes();
-            Controller.deleteAirplaneFromCompany(selectedCompany, readInt("Select airplane id:"));
+            Controller.deleteAirplaneFromCompany(selectedCompany, readInt(STRING_SELECT_AIRPLANE_ID));
             printCompanyAirplanes();
         } else {
             System.out.println(STRING_PLEASE_SELECT_COMPANY);
@@ -173,7 +188,7 @@ public class View {
     private void calculateTotalPayloadOption(){
         if (selectedCompany != null) {
             printCompanyCargoAirplanes();
-            System.out.println("Total payload of all company`s cargo airplanes: " + Controller.calculatePayload(selectedCompany));
+            System.out.println(STRING_TOTAL_PAYLOAD + Controller.calculatePayload(selectedCompany));
         } else {
             System.out.println(STRING_PLEASE_SELECT_COMPANY);
         }
@@ -182,7 +197,7 @@ public class View {
     private void calculateTotalCapacityOption(){
         if (selectedCompany != null) {
             printCompanyPassengersAirplanes();
-            System.out.println("Total capacity of all company`s passenger airplanes:" + Controller.calculateTotalCapacity(selectedCompany));
+            System.out.println(STRING_TOTAL_CAPACITY + Controller.calculateTotalCapacity(selectedCompany));
         } else {
             System.out.println(STRING_PLEASE_SELECT_COMPANY);
         }
@@ -190,9 +205,9 @@ public class View {
 
     private void findByFuelConsumptionOption(){
         if (selectedCompany != null) {
-            System.out.println("Find Airplane by range of Fuel Consumption");
+            System.out.println(STRING_FIND_AIRPLANE_BY_RANGE_OF_FUEL_CONSUMPTION);
             try {
-                Controller.findAirplaneByFuelConsumption(selectedCompany, readInt("Enter min Fuel Consumption:"), readInt("Enter max Fuel Consumption:"))
+                Controller.findAirplaneByFuelConsumption(selectedCompany, readInt(STRING_ENTER_MIN_FUEL_CONSUMPTION), readInt(STRING_ENTER_MAX_FUEL_CONSUMPTION))
                         .forEach(System.out::println);
             } catch (MinMaxFuelConsumptionExeption e) {
                 logger.error(e);
@@ -204,7 +219,7 @@ public class View {
 
     private void sortByRangeOption(){
         if (selectedCompany != null) {
-            System.out.println("Sorted by range airplanes:");
+            System.out.println(STRING_SORTED_BY_RANGE_AIRPLANES);
             Controller.sortAirplaneByRange(selectedCompany).forEach(System.out::println);
         } else {
             System.out.println(STRING_PLEASE_SELECT_COMPANY);
