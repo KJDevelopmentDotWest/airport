@@ -52,8 +52,6 @@ public class View {
     private static final String STRING_PASSENGERS_AIRPLANES = " passengers airplanes:";
     private static final String STRING_SELECT_MENU = "Select menu option:";
 
-    private final static String INCORRECT_CHOICE_MESSAGE = "Incorrect choice";
-
     private final static String INPUT_LETTER_MESSAGE = "Input letter:";
 
     private static final String PRINT_DEFAULT_AIRPLANES_METHOD_MESSAGE = "We're at printDefaultAirplanes method";
@@ -240,7 +238,7 @@ public class View {
     }
 
     private void printCompanyAirplanesOption() {
-        logger.debug(PRINT_COMPAY_AIRPLANES_OPTON_METHOD_MESSAGE);
+        logger.debug(PRINT_COMPANY_AIRPLANES_OPTION_METHOD_MESSAGE);
         if (selectedCompany != null) {
             printCompanyAirplanes();
         } else {
