@@ -67,7 +67,7 @@ public class Controller {
         return new CompanyEditor(company).findAirplaneByFuelConsumption(10,20);
     }
 
-    public static List<Airplane> getCompany (Company company){
+    public static List<Airplane> getCompanyAirplanes (Company company){
         return new CompanyEditor(company).getCompanyAirplanes();
 
     }
@@ -76,35 +76,11 @@ public class Controller {
 
     }
 
-    public static Airplane findByManufacture (String manufacture, List<Airplane> airplaneList) throws NoneAirplaneFound {
-        logger.debug(FIND_BY_MANUFACTURE_MESSAGE);
-        for (Airplane airplane:airplaneList) {
-            if(airplane.getManufacturer()==manufacture){
-                return airplane;
-            }else{
-                logger.info(NONE_AIRPLANE_WITH_SUCH_MANUFACTURE);
-                throw new NoneAirplaneFound(NONE_AIRPLANE_WITH_SUCH_MANUFACTURE);
-            }
-        }
-        return null;
+    public static List<Airplane> findAirplaneByFuelConsumption(Company company, int minFuelConsumption, int maxFuelConsumption) throws MinMaxFuelConsumptionExeption {
+        return new CompanyEditor(company).findAirplaneByFuelConsumption(minFuelConsumption, maxFuelConsumption);
     }
 
-    public static Airplane findByConsumption (int consumption, List<Airplane> airplaneList) throws NoneAirplaneFound {
-        logger.debug(FIND_BY_CONSUMPTION_MESSAGE);
-        for (Airplane airplane:airplaneList) {
-            if(airplane.getFuelConsumption()==consumption){
-                return airplane;
-            }else{
-                logger.info(NONE_AIRPLANE_WITH_SUCH_CONSUMPTION);
-                throw new NoneAirplaneFound(NONE_AIRPLANE_WITH_SUCH_CONSUMPTION);
-            }
-        }
-        return null;
+    public static List<Airplane> sortAirplaneByRange(Company company){
+        return new CompanyEditor(company).sortAirplaneByRange();
     }
-
-    //В новой ветке Controller
-    //calculate payload - done
-    //sort by range - done
-    //find by fuel consumption range
-    //find by manufacturer
 }
