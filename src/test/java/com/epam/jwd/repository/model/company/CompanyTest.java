@@ -19,13 +19,6 @@ class CompanyTest {
     private static List<Airplane> airplanesExpected;
     private static List<Airplane> airplanesPassengerExpected;
     private static List<Airplane> airplanesCargoExpected;
-    private static Airplane reservePlane = new PassengerPlane.Builder()
-            .withFuelConsumption(10)
-            .withManufacturer("Boeing")
-            .withModel("777")
-            .withRange(1000)
-            .withSeats(400)
-            .build();
 
     @BeforeAll
     static void setUp() {

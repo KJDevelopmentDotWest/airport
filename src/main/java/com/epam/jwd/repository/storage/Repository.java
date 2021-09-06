@@ -1,13 +1,11 @@
 package com.epam.jwd.repository.storage;
 
-import com.epam.jwd.repository.exception.RepositoryException;
 import com.epam.jwd.repository.fileio.FileInputOutput;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.company.Company;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +20,10 @@ public class Repository {
     private static final String STRING_SAVE_ALL_TO_MEMORY = "We're in saveAllToMemoryMethod";
 
     static {
+        read();
+    }
+
+    private static void read(){
         FileInputOutput.read(DATA_PATH, companies);
         FileInputOutput.read(DEFAULT_AIRPLANES_PATH, defaultAirplanes);
     }
