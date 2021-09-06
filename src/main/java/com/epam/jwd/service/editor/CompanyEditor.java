@@ -15,31 +15,22 @@ import org.apache.logging.log4j.Logger;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class CompanyEditor {
+
     private static final Logger logger = LogManager.getLogger(CompanyEditor.class);
-
     private static final String MIN_MAX_FUELCONSUMPTION_ERROR_MESSAGE = "Min Max is not valid";
-
     private static final String ID_ERROR_MESSAGE = "Id should be greater than 0";
-
     private static final String START_COUNT_TOTAL_PAYLOAD_METHOD = "We-ve started countTotalPayloadMethod";
-
     private static final String START_ADD_AIRPLANE_TO_COMPANY_METHOD_MESSAGE = "We've started addAirplaneToCompany method";
-
     private static final String END_ADD_AIRPLANE_TO_COMPANY_METHOD_MESSAGE = "We've finished addAirplaneToCompany method";
-
     private static final String START_DELETE_AIRPLANE_FROM_COMPANY_METHOD_MESSAGE = "We've started deleteAirplaneFromCompany method";
-
     private static final String END_DELETE_AIRPLANE_FROM_COMPANY_METHOD_MESSAGE = "We've finished deleteAirplaneFromCompany method";
-
     private static final String START_COUNT_TOTAL_CAPACITY_METHOD = "We've started countTotalCapacity method";
-
     private static final String START_AIRPLANE_BYFUEL_CONSUPTION_METHOD = "We've started airplaneByFuelMethod";
-
     private static final String END_AIRPLANE_BYFUEL_CONSUPTION_METHOD ="We've finished airplaneByFuelMethod" ;
-
     private static final String SORT_AIRPLANE_BY_RANGE_MESSAGE = "We're in sortAirplaneByRangeMessage";
 
     Company company;
@@ -64,10 +55,9 @@ public class CompanyEditor {
 
     public void deleteAirplaneFromCompany(int id) {
         logger.debug(START_DELETE_AIRPLANE_FROM_COMPANY_METHOD_MESSAGE);
-        company.getAirplanes().remove(company.getAirplanes().stream()
+        company.getAirplanes().stream()
                 .filter(airplane -> airplane.getId() == id)
-                .findFirst()
-                .get());
+                .findFirst().ifPresent(airplaneToDelete -> company.getAirplanes().remove(airplaneToDelete));
         logger.debug(END_DELETE_AIRPLANE_FROM_COMPANY_METHOD_MESSAGE);
     }
 

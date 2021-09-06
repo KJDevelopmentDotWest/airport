@@ -63,7 +63,7 @@ public class Controller {
         return new CompanyEditor(company).sortAirplaneByRange();
     }
 
-    public static List<Airplane> sortByFuelConsumptionRange(Company company) throws MinMaxFuelConsumptionExeption {
+    public static List<Airplane> findByFuelConsumptionRange(Company company) throws MinMaxFuelConsumptionExeption {
         return new CompanyEditor(company).findAirplaneByFuelConsumption(10,20);
     }
 

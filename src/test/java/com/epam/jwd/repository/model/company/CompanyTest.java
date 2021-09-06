@@ -4,6 +4,7 @@ import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.Assertions;
@@ -156,14 +157,6 @@ class CompanyTest {
         Company company = new Company("Company", airplanesExpected);
         List<Airplane> companyAirplanes = company.getAirplanes();
         Assertions.assertEquals(airplanesExpected, companyAirplanes);
-    }
-
-    @Test
-    void addPlaneAfterGetAirplanes() {
-        Company company = new Company("Company", airplanesExpected);
-        List<Airplane> companyAirplanes = company.getAirplanes();
-        companyAirplanes.add(reservePlane);
-        Assertions.assertEquals(airplanesExpected, company.getAirplanes());
     }
 
     @Test
