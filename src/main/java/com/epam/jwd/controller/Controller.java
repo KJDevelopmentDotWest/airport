@@ -86,4 +86,8 @@ public class Controller {
         logger.debug(SORT_AIRPLANES_BY_RANGE_DEBUG_MESSAGE);
         return new CompanyEditor(company).sortAirplaneByRange();
     }
+
+    public static void deleteCompany(Company company){
+        RepositoryEditor.deleteCompanyFromRepository(company);
+    }
 }

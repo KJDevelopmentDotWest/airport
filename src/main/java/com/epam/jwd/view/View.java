@@ -31,8 +31,9 @@ public class View {
             "7. Calculate total capacity\n" +
             "8. Find airplane by fuel consumption\n" +
             "9. Sort airplanes by range\n" +
-            "10. Save to memory\n" +
-            "11. Exit";
+            "10. Delete company\n" +
+            "11. Save to memory\n" +
+            "12. Exit";
     private static final String STRING_LIST_OF = "List of ";
     private static final String STRING_PLEASE_SELECT_COMPANY = "Please select company";
     private static final String STRING_SORTED_BY_RANGE_AIRPLANES = "Sorted by range airplanes:";
@@ -64,8 +65,9 @@ public class View {
         userInputToPerformerMap.put(7, this::calculateTotalCapacityOption);
         userInputToPerformerMap.put(8, this::findByFuelConsumptionOption);
         userInputToPerformerMap.put(9, this::sortByRangeOption);
-        userInputToPerformerMap.put(10, this::saveOption);
-        userInputToPerformerMap.put(11, this::exitOption);
+        userInputToPerformerMap.put(10, this::deleteCompany);
+        userInputToPerformerMap.put(11, this::saveOption);
+        userInputToPerformerMap.put(12, this::exitOption);
     }
 
     private int readInt() {
@@ -229,6 +231,14 @@ public class View {
         if (selectedCompany != null) {
             System.out.println(STRING_SORTED_BY_RANGE_AIRPLANES);
             Controller.sortAirplaneByRange(selectedCompany).forEach(System.out::println);
+        } else {
+            System.out.println(STRING_PLEASE_SELECT_COMPANY);
+        }
+    }
+
+    private void deleteCompany(){
+        if (selectedCompany != null) {
+            Controller.deleteCompany(selectedCompany);
         } else {
             System.out.println(STRING_PLEASE_SELECT_COMPANY);
         }
