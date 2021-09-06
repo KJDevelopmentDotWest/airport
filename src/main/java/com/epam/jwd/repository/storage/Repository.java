@@ -1,6 +1,5 @@
 package com.epam.jwd.repository.storage;
 
-import com.epam.jwd.repository.exception.RepositoryException;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
@@ -19,14 +18,6 @@ public class Repository {
     private static final List<Company> companies = new ArrayList<>();
 
     private static final List<Airplane> defaultAirplanes = new ArrayList<>();
-
-    private static final String STRING_FILE_NOT_FOUND_EXCEPTION = "FileNotFoundException happened";
-
-    private static final String STRING_IO_EXCEPTION = "IOException happened";
-
-    private static final String PATH = "src/main/resources/data.txt";
-
-    private static final String STRING_SAVE_ALL_TO_MEMORY = "We're in saveAllToMemoryMethod";
 
     static {
         companies.add(new Company(
@@ -103,15 +94,6 @@ public class Repository {
                                 .build()
                 )
         ));
-
-        defaultAirplanes.add(new CargoPlane.Builder()
-                .withFuelConsumption(40)
-                .withManufacturer("Airbus")
-                .withModel("A300")
-                .withRange(4000)
-                .withPayload(8000)
-                .withId(4)
-                .build());
     }
 
 //    static {
@@ -140,16 +122,14 @@ public class Repository {
     }
 
     public static void saveAllToMemory(){
-        logger.info(STRING_SAVE_ALL_TO_MEMORY);
-        try (FileOutputStream fos = new FileOutputStream(PATH);
+        logger.info("We're in saveAllToMemoryMethod");
+        try (FileOutputStream fos = new FileOutputStream("src/main/resources/data.txt");
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(companies);
         } catch (FileNotFoundException e) {
-            logger.error(STRING_FILE_NOT_FOUND_EXCEPTION, e);
-            throw new RepositoryException(STRING_FILE_NOT_FOUND_EXCEPTION);
+            logger.error("FileNotFoundException happened", e);
         } catch (IOException e) {
-            logger.error(STRING_IO_EXCEPTION, e);
-            throw new RepositoryException(STRING_IO_EXCEPTION);
+            logger.error("IOException happened", e);
         }
     }
 }
