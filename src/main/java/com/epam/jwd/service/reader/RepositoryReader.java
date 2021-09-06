@@ -26,7 +26,15 @@ public class RepositoryReader {
 
     public static Company getCompany(int id) throws WrongIdException {
         if (Validator.validateCompanyId(id)) {
-            return Repository.findAllCompanies().get(id);
+            if (Repository.findAllCompanies().stream()
+                    .anyMatch(company -> id == company.getId())){
+                return Repository.findAllCompanies().stream()
+                    .filter(company -> id == company.getId())
+                    .findFirst()
+                    .get();
+            } else {
+                throw new WrongIdException(STRING_WRONG_ID);
+            }
         } else {
             throw new WrongIdException(STRING_WRONG_ID);
         }
