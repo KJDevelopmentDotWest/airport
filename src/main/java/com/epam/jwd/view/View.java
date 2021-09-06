@@ -51,7 +51,49 @@ public class View {
     private static final String STRING_CARGO_AIRPLANES = " cargo airplanes:";
     private static final String STRING_PASSENGERS_AIRPLANES = " passengers airplanes:";
     private static final String STRING_SELECT_MENU = "Select menu option:";
+
+    private final static String INCORRECT_CHOICE_MESSAGE = "Incorrect choice";
+
+    private final static String INPUT_LETTER_MESSAGE = "Input letter:";
+
+    private static final String PRINT_DEFAULT_AIRPLANES_METHOD_MESSAGE = "We're at printDefaultAirplanes method";
+
+    private static final String PRINT_COMPANY_AIRPLANES_METHOD_MESSAGE ="We're at printCompanyAirplanes method";
+
+    private static final String PRINT_COMPANY_CARGO_AIRPLANES_METHOD_MESSAGE ="We're at printCompanyCargoAirplanes method";
+
+    private static final String PRINT_COMPANY_PASSENGERS_AIRPLANES_METHOD_MESSAGE = "We're at printCompanyPassengersAirplanes method";
+
+    private static final String START_METHOD_MESSAGE = "We're at start method";
+
+    private static final String PRINT_COMPANY_METHOD_MESSAGE = "We're at printCompany method";
+
+    private static final String CREATE_COMPANY_OPTION_METHOD_MESSAGE = "We're at createCompany method";
+
+    private static final String GET_COMPANY_BY_ID_METHOD_MESSAGE ="We're at getCompanyById method";
+
+    private static final String ADD_AIRPLANE_TO_COMPANY_OPTION_METHOD_MESSAGE = "We're at addAirplaneToCompany method";
+
+    private static final String DELETE_AIRPLANE_FROM_COMPANY_OPTION_METHOD_MESSAGE ="We're at deleteAirplaneFromCompanyOption method";
+
+    private static final String PRINT_COMPANY_AIRPLANES_OPTION_METHOD_MESSAGE ="We're at printCompanyAirplanesOption method";
+
+    private static final String CALCULATE_TOTAL_PAYLOAD_OPTION_METHOD_MESSAGE = "We're at calculateTotalPayload method";
+
+    private static final String CALCULATE_TOTAL_CAPACITY_OPTION_METHOD_MESSAGE = "We're at calculateTotalCapacity method";
+
+    private static final String FIND_BY_FUEL_CONSUMPTION_OPTION_METHOD_MESSAGE ="We're at findByFuelConsumptionMethod method";
+
+    private static final String SORT_BY_RANGE_OPTION_METHOD_MESSAGE ="We're at sortByRangeOption method";
+
+    private static final String DELETE_COMPANY_METHOD_MESSAGE ="We're at deleteCompany method";
+
+    private static final String SAVE_OPTION_METHOD_MESSAGE = "We're at saveOption method";
+
+    private static final String EXIT_OPTION_METHOD_MESSAGE ="We're at exitOption method";
+
     private static final Map<Integer, Performer> userInputToPerformerMap = new HashMap<>();
+
     private static Company selectedCompany;
     private static boolean whileState = true;
 
@@ -110,22 +152,26 @@ public class View {
     }
 
     private void printCompanies() {
+        logger.debug(PRINT_COMPANY_METHOD_MESSAGE);
         Controller.getCompanies()
                 .forEach(company1 -> System.out.printf(STRING_COMPANY, company1.getName(), company1.getId()));
     }
 
     private void printDefaultAirplanes() {
+        logger.debug(PRINT_DEFAULT_AIRPLANES_METHOD_MESSAGE);
         Controller.getDefaultAirplanes()
                 .forEach(System.out::println);
     }
 
     private void printCompanyAirplanes() {
+        logger.debug(PRINT_COMPANY_AIRPLANES_METHOD_MESSAGE);
         System.out.println(STRING_LIST_OF + selectedCompany.getName() + STRING_AIRPLANES);
         Controller.getCompanyAirplanes(selectedCompany)
                 .forEach(System.out::println);
     }
 
     private void printCompanyCargoAirplanes() {
+        logger.debug(PRINT_COMPANY_CARGO_AIRPLANES_METHOD_MESSAGE);
         System.out.println(STRING_LIST_OF + selectedCompany.getName() + STRING_CARGO_AIRPLANES);
         Controller.getCompanyAirplanes(selectedCompany).stream()
                 .filter(airplane -> airplane instanceof CargoPlane)
@@ -133,6 +179,7 @@ public class View {
     }
 
     private void printCompanyPassengersAirplanes() {
+        logger.debug(PRINT_COMPANY_PASSENGERS_AIRPLANES_METHOD_MESSAGE);
         System.out.println(STRING_LIST_OF + selectedCompany.getName() + STRING_PASSENGERS_AIRPLANES);
         Controller.getCompanyAirplanes(selectedCompany).stream()
                 .filter(airplane -> airplane instanceof PassengerPlane)
@@ -140,6 +187,7 @@ public class View {
     }
 
     public void start(Level logLevel) {
+        logger.debug(START_METHOD_MESSAGE);
         Configurator.setRootLevel(logLevel);
         while (whileState) {
             if (selectedCompany != null) {
@@ -151,10 +199,12 @@ public class View {
     }
 
     private void createCompanyOption() {
+        logger.debug(CREATE_COMPANY_OPTION_METHOD_MESSAGE);
         selectedCompany = Controller.createCompany(readString(STRING_ENTER_COMPANY_NAME));
     }
 
     private void getCompanyByIdOption() {
+        logger.debug(GET_COMPANY_BY_ID_METHOD_MESSAGE);
         printCompanies();
         try {
             selectedCompany = Controller.getCompany(readInt(STRING_SELECT_COMPANY_ID));
@@ -164,6 +214,7 @@ public class View {
     }
 
     private void addAirplaneToCompanyOption() {
+        logger.debug(ADD_AIRPLANE_TO_COMPANY_OPTION_METHOD_MESSAGE);
         if (selectedCompany != null) {
             printDefaultAirplanes();
             try {
@@ -178,6 +229,7 @@ public class View {
     }
 
     private void deleteAirplaneFromCompanyOption() {
+        logger.debug(DELETE_AIRPLANE_FROM_COMPANY_OPTION_METHOD_MESSAGE);
         if (selectedCompany != null) {
             printCompanyAirplanes();
             Controller.deleteAirplaneFromCompany(selectedCompany, readInt(STRING_SELECT_AIRPLANE_ID));
@@ -188,6 +240,7 @@ public class View {
     }
 
     private void printCompanyAirplanesOption() {
+        logger.debug(PRINT_COMPAY_AIRPLANES_OPTON_METHOD_MESSAGE);
         if (selectedCompany != null) {
             printCompanyAirplanes();
         } else {
@@ -196,6 +249,7 @@ public class View {
     }
 
     private void calculateTotalPayloadOption() {
+        logger.debug(CALCULATE_TOTAL_PAYLOAD_OPTION_METHOD_MESSAGE);
         if (selectedCompany != null) {
             printCompanyCargoAirplanes();
             System.out.println(STRING_TOTAL_PAYLOAD + Controller.calculatePayload(selectedCompany));
@@ -205,6 +259,7 @@ public class View {
     }
 
     private void calculateTotalCapacityOption() {
+        logger.debug(CALCULATE_TOTAL_CAPACITY_OPTION_METHOD_MESSAGE);
         if (selectedCompany != null) {
             printCompanyPassengersAirplanes();
             System.out.println(STRING_TOTAL_CAPACITY + Controller.calculateTotalCapacity(selectedCompany));
@@ -214,6 +269,7 @@ public class View {
     }
 
     private void findByFuelConsumptionOption() {
+        logger.debug(FIND_BY_FUEL_CONSUMPTION_OPTION_METHOD_MESSAGE);
         if (selectedCompany != null) {
             System.out.println(STRING_FIND_AIRPLANE_BY_RANGE_OF_FUEL_CONSUMPTION);
             try {
@@ -228,6 +284,7 @@ public class View {
     }
 
     private void sortByRangeOption() {
+        logger.debug(SORT_BY_RANGE_OPTION_METHOD_MESSAGE);
         if (selectedCompany != null) {
             System.out.println(STRING_SORTED_BY_RANGE_AIRPLANES);
             Controller.sortAirplaneByRange(selectedCompany).forEach(System.out::println);
@@ -237,6 +294,7 @@ public class View {
     }
 
     private void deleteCompany(){
+        logger.debug(DELETE_COMPANY_METHOD_MESSAGE);
         if (selectedCompany != null) {
             Controller.deleteCompany(selectedCompany);
         } else {
@@ -245,10 +303,12 @@ public class View {
     }
 
     private void saveOption() {
+        logger.debug(SAVE_OPTION_METHOD_MESSAGE);
         Controller.saveToMemory();
     }
 
     private void exitOption() {
+        logger.debug(EXIT_OPTION_METHOD_MESSAGE);
         whileState = false;
     }
 }
