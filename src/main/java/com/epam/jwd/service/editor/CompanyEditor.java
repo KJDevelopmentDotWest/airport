@@ -7,7 +7,7 @@ import com.epam.jwd.repository.model.company.Company;
 import com.epam.jwd.repository.storage.Repository;
 import com.epam.jwd.service.exception.MinMaxFuelConsumptionExeption;
 import com.epam.jwd.service.exception.WrongIdException;
-import com.epam.jwd.service.validator.CompanyValidator;
+import com.epam.jwd.service.validator.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,7 +39,7 @@ public class CompanyEditor {
 
     public void addAirplaneToCompany(int id) throws WrongIdException {
         logger.debug(START_ADD_AIRPLANE_TO_COMPANY_METHOD_MESSAGE);
-        if (CompanyValidator.validateId(id)) {
+        if (Validator.validateId(id)) {
             company.getAirplanes().add(Repository.getDefaultAirplanes().stream()
                     .filter(airplane -> airplane.getId() == id)
                     .findFirst()
@@ -81,7 +81,7 @@ public class CompanyEditor {
 
     public List<Airplane> findAirplaneByFuelConsumption(int minFuelConsumption, int maxFuelConsumption) throws MinMaxFuelConsumptionExeption {
         logger.debug(START_AIRPLANE_BYFUEL_CONSUPTION_METHOD);
-        if (CompanyValidator.validateMinMaxFuelConsumption(minFuelConsumption, maxFuelConsumption)) {
+        if (Validator.validateMinMaxFuelConsumption(minFuelConsumption, maxFuelConsumption)) {
             logger.debug(END_AIRPLANE_BYFUEL_CONSUPTION_METHOD);
             return company.getAirplanes().stream()
                     .filter(airplane -> airplane.getFuelConsumption() >= minFuelConsumption

@@ -1,10 +1,11 @@
 package com.epam.jwd.service.validator;
 
+import com.epam.jwd.repository.storage.Repository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CompanyValidator {
-    private static final Logger logger = LogManager.getLogger(CompanyValidator.class);
+public class Validator {
+    private static final Logger logger = LogManager.getLogger(Validator.class);
 
     private static final String VALIDATE_MIN_MAX_FUEL_CONSUMPTION_MESSAGE = "We're in validateMinMaxFuelConsumption method";
 
@@ -17,5 +18,8 @@ public class CompanyValidator {
     public static boolean validateId(int id){
         logger.debug(VALIDATE_ID_MESSAGE);
         return id >= 0;
+    }
+    public static boolean validateCompanyId(int id){
+        return Repository.findAllCompanies().size() > id;
     }
 }

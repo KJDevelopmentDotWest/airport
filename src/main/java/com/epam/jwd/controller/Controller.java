@@ -3,6 +3,7 @@ package com.epam.jwd.controller;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.company.Company;
 
+import com.epam.jwd.repository.storage.Repository;
 import com.epam.jwd.service.creator.CompanyCreator;
 import com.epam.jwd.service.editor.CompanyEditor;
 import com.epam.jwd.service.editor.RepositoryEditor;
@@ -33,6 +34,10 @@ public class Controller {
 
     public static List<Company> getCompanies(){
         return RepositoryReader.getCompanies();
+    }
+
+    public static Company getCompany(int id) throws WrongIdException {
+        return RepositoryReader.getCompany(id);
     }
 
     public static int calculateTotalCapacity(Company company){

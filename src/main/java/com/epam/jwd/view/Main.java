@@ -13,7 +13,7 @@ public class Main {
 
     private static final String MAIN_METHOD_MESSAGE = "We're in main method";
 
-    public static void main(String[] args) throws WrongIdException, MinMaxFuelConsumptionExeption {
+    public static void main(String[] args) {
         logger.debug(MAIN_METHOD_MESSAGE);
         View view = new View();
         view.start(Level.INFO);

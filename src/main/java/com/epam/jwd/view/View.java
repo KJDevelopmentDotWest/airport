@@ -148,9 +148,13 @@ public class View {
         selectedCompany = Controller.createCompany(readString(STRING_ENTER_COMPANY_NAME));
     }
 
-    private void getCompanyByIdOption(){
+    private void getCompanyByIdOption() {
         printCompanies();
-        selectedCompany = Controller.getCompanies().get(readInt(STRING_SELECT_COMPANY_ID));
+        try {
+            selectedCompany = Controller.getCompany(readInt());
+        } catch (WrongIdException e) {
+            logger.error(e);
+        }
     }
 
     private void addAirplaneToCompanyOption(){
