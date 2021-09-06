@@ -92,6 +92,10 @@ public class View {
 
     private static final String EXIT_OPTION_METHOD_MESSAGE ="We're at exitOption method";
 
+    private static final String PRINT_COMPANY_AIRPLANES_OPTON_METHOD_MESSAGE ="We are at printCompanyAirplanesOptionMethod" ;
+
+    private static final String PRINT_COMPAY_AIRPLANES_OPTON_METHOD_MESSAGE = "We're at printCompnyAirplanes method";
+
     private static final Map<Integer, Performer> userInputToPerformerMap = new HashMap<>();
 
     private static Company selectedCompany;
