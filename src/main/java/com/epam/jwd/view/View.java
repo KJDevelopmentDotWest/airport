@@ -52,7 +52,7 @@ public class View {
     private static final String STRING_PASSENGERS_AIRPLANES = " passengers airplanes:";
     private static final String STRING_SELECT_MENU = "Select menu option:";
 
-    private final static String INCORRECT_CHOICE_MESSAGE = "Incorrect choice";
+
 
     private final static String INPUT_LETTER_MESSAGE = "Input letter:";
 
