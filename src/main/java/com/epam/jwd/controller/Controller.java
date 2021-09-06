@@ -7,13 +7,25 @@ import com.epam.jwd.service.creator.CompanyCreator;
 import com.epam.jwd.service.editor.CompanyEditor;
 import com.epam.jwd.service.editor.RepositoryEditor;
 import com.epam.jwd.service.exeption.MinMaxFuelConsumptionExeption;
+import com.epam.jwd.service.exeption.NoneAirplaneFound;
 import com.epam.jwd.service.exeption.WrongIdException;
 import com.epam.jwd.service.reader.RepositoryReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import java.util.List;
 
 public class Controller {
+    private static final Logger logger = LogManager.getLogger(Controller.class);
+
+    private static final String NONE_AIRPLANE_WITH_SUCH_MANUFACTURE = "There is no any airplane with such manufacture";
+
+    private static final String NONE_AIRPLANE_WITH_SUCH_CONSUMPTION ="There is no any airplane with such consumption";
+
+    private static final String FIND_BY_MANUFACTURE_MESSAGE = "We're in findByManufacture method";
+
+    private static final String FIND_BY_CONSUMPTION_MESSAGE = "We're in findByConsumption method";
 
     public static Company createCompany(String companyName){
         CompanyCreator companyCreator = new CompanyCreator(companyName);
@@ -38,9 +50,12 @@ public class Controller {
     }
 
     public static void saveToMemory(){
+
         RepositoryEditor.saveRepositoryToFile();
     }
+
     public static int calculatePayload (Company company){
+
         return new CompanyEditor(company).countTotalPayload();
     }
 
@@ -60,9 +75,36 @@ public class Controller {
          new CompanyEditor(company).deleteAirplaneFromCompany(id);
 
     }
+
+    public static Airplane findByManufacture (String manufacture, List<Airplane> airplaneList) throws NoneAirplaneFound {
+        logger.debug(FIND_BY_MANUFACTURE_MESSAGE);
+        for (Airplane airplane:airplaneList) {
+            if(airplane.getManufacturer()==manufacture){
+                return airplane;
+            }else{
+                logger.info(NONE_AIRPLANE_WITH_SUCH_MANUFACTURE);
+                throw new NoneAirplaneFound(NONE_AIRPLANE_WITH_SUCH_MANUFACTURE);
+            }
+        }
+        return null;
+    }
+
+    public static Airplane findByConsumption (int consumption, List<Airplane> airplaneList) throws NoneAirplaneFound {
+        logger.debug(FIND_BY_CONSUMPTION_MESSAGE);
+        for (Airplane airplane:airplaneList) {
+            if(airplane.getFuelConsumption()==consumption){
+                return airplane;
+            }else{
+                logger.info(NONE_AIRPLANE_WITH_SUCH_CONSUMPTION);
+                throw new NoneAirplaneFound(NONE_AIRPLANE_WITH_SUCH_CONSUMPTION);
+            }
+        }
+        return null;
+    }
+
     //В новой ветке Controller
-    //calculate payload
-    //sort by range
+    //calculate payload - done
+    //sort by range - done
     //find by fuel consumption range
     //find by manufacturer
 }

@@ -13,11 +13,17 @@ import java.util.List;
 public class RepositoryReader {
     private static final Logger logger = LogManager.getLogger(RepositoryReader .class);
 
+    private static final String GET_DEFAULT_AIRPLANES_MESSAGE ="We're in getDefaultAirplanes() method" ;
+
+    private static final String GET_COMPANIES_MESSAGE ="We're in getCompanies() method" ;
+
     public static List<Company> getCompanies() {
+        logger.debug(GET_COMPANIES_MESSAGE);
         return Collections.unmodifiableList(Repository.findAllCompanies());
     }
 
     public static List<Airplane> getDefaultAirplanes() {
+        logger.debug(GET_DEFAULT_AIRPLANES_MESSAGE);
         return Collections.unmodifiableList(Repository.getDefaultAirplanes());
     }
 }
