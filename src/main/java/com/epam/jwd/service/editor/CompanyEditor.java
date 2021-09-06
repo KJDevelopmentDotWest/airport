@@ -5,17 +5,15 @@ import com.epam.jwd.repository.model.airplane.CargoPlane;
 import com.epam.jwd.repository.model.airplane.PassengerPlane;
 import com.epam.jwd.repository.model.company.Company;
 import com.epam.jwd.repository.storage.Repository;
-import com.epam.jwd.service.exeption.MinMaxFuelConsumptionExeption;
-import com.epam.jwd.service.exeption.WrongIdException;
+import com.epam.jwd.service.exception.MinMaxFuelConsumptionExeption;
+import com.epam.jwd.service.exception.WrongIdException;
 import com.epam.jwd.service.validator.CompanyValidator;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class CompanyEditor {

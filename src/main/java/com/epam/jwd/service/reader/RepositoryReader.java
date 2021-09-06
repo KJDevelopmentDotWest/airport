@@ -3,7 +3,6 @@ package com.epam.jwd.service.reader;
 import com.epam.jwd.repository.model.airplane.Airplane;
 import com.epam.jwd.repository.model.company.Company;
 import com.epam.jwd.repository.storage.Repository;
-import com.epam.jwd.service.exeption.MinMaxFuelConsumptionExeption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

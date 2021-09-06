@@ -1,6 +1,5 @@
-package com.epam.jwd.service.exeption;
+package com.epam.jwd.service.exception;
 
-import com.epam.jwd.service.editor.RepositoryEditor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
